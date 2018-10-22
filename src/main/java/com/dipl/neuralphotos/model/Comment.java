@@ -14,12 +14,12 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "picture_id",table = "picture",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "picture_id",nullable = false)
     private Picture picture;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",table = "user",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     public Comment() {

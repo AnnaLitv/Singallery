@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 @Controller
+@RequestMapping(value = "api/upload")
 public class UploadResource {
 
     private final UploadService uploadService;
@@ -23,13 +24,13 @@ public class UploadResource {
         this.uploadService = uploadService;
     }
 
-    @RequestMapping(value="/upload", method=RequestMethod.GET)
+    @RequestMapping(method=RequestMethod.GET)
     public @ResponseBody
     String provideUploadInfo() {
         return "Вы можете загружать файл с использованием того же URL.";
     }
 
-    @RequestMapping(value="/upload", method=RequestMethod.POST)
+    @RequestMapping(method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
         return uploadService.uploadFile(file);
     }

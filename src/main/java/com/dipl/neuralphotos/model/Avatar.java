@@ -13,8 +13,8 @@ public class Avatar {
     @Column(name = "url",nullable = false)
     private String url;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",table = "user",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     public Avatar() {

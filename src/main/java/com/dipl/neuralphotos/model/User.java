@@ -34,9 +34,11 @@ public class User {
     @Column(name = "country")
     private String country;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "state")
     private UserState state;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private UserRole role;
 
