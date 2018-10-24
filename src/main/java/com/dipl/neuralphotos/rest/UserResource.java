@@ -42,4 +42,5 @@ public class UserResource {
     public ResponseEntity<?> blockUser(@PathVariable Long id){
         return null;
     }
+
 }

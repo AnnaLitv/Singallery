@@ -35,11 +35,11 @@ public class User {
     private String country;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private UserState state;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private UserRole role;
 
     public User() {

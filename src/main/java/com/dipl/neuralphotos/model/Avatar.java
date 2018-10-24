@@ -3,7 +3,7 @@ package com.dipl.neuralphotos.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "avatar")
 public class Avatar {
     @Id
     @Column(name = "id",nullable = false)
