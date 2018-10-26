@@ -4,8 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.MultipartConfigElement;
+
 
 @SpringBootApplication
 public class NeuralPhotosApplication {
@@ -20,4 +24,5 @@ public class NeuralPhotosApplication {
     public static void main(String[] args) {
         SpringApplication.run(NeuralPhotosApplication.class, args);
     }
+
 }

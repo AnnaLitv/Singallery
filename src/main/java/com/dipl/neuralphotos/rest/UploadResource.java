@@ -34,4 +34,5 @@ public class UploadResource {
     public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
         return uploadService.uploadFile(file);
     }
+
 }
