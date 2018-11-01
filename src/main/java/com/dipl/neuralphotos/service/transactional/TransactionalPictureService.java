@@ -62,6 +62,7 @@ public class TransactionalPictureService implements PictureService {
     public Picture savePicture(PictureForm pictureForm, String filepath){
         User user = userService.findUserById(1L);
         Picture picture = new Picture(pictureForm.getName(),filepath,user);
+        picture.setDescription(pictureForm.getDescription());
         return pictureRepository.save(picture);
     }
 }

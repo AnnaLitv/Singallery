@@ -38,14 +38,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
+        http.authorizeRequests().antMatchers("/admin/accountInfo")//
+                .access("hasAnyRole('USER', 'ADMIN')");
+       // http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_MANAGER')");
+
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
         http.authorizeRequests().and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
-                .loginPage("/admin/login")
-                .defaultSuccessUrl("/admin/accountInfo")
-                .failureUrl("/admin/login?error=true")
-                .usernameParameter("userName")
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .failureUrl("/login?error=true")
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/admin/logout").logoutSuccessUrl("/");
     }

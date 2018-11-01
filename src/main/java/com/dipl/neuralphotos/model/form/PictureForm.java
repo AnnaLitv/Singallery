@@ -7,6 +7,7 @@ public class PictureForm {
     private String name;
     private String description;
     private MultipartFile file;
+    private String url;
 
     public PictureForm() {
     }
@@ -38,5 +39,13 @@ public class PictureForm {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
