@@ -29,16 +29,21 @@ public class PictureResource {
     @RequestMapping(method = RequestMethod.POST)
     public String savePicture(Model model, @ModelAttribute("picture") @Validated PictureForm picture,
                               BindingResult result, RedirectAttributes redirectAttributes) {
+        String filepath = "";
         if(result.hasErrors()){
             return "picture";
         }
         try {
-            //PictureForm form = picture;
-            uploadService.uploadFile(picture.getFile());
+            filepath = uploadService.uploadFile(picture.getFile());
         }catch (Exception e){
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("pictureForm",picture);
+            return "picture";
         }
-        return "saved!";
+        pictureService.savePicture(picture,filepath);
+        model.addAttribute("errorMessage", "successfully uploaded!");
+        model.addAttribute("pictureForm",picture);
+        return "picture";
     }
 
     @RequestMapping(method = RequestMethod.GET)

@@ -1,6 +1,7 @@
 package com.dipl.neuralphotos.service;
 
 import com.dipl.neuralphotos.model.Picture;
+import com.dipl.neuralphotos.model.form.PictureForm;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface PictureService {
     void likePicture(long pictureId);
 
     Picture savePicture(Picture picture);
+
+    Picture savePicture(PictureForm pictureForm, String filepath);
 }

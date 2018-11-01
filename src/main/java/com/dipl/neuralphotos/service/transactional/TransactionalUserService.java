@@ -24,7 +24,7 @@ public class TransactionalUserService implements UserService {
 
     @Override
     @Transactional
-    public List<User> findAll(){
+    public List<com.dipl.neuralphotos.model.User> findAll(){
         return userRepository.findAll();
     }
 
@@ -37,5 +37,11 @@ public class TransactionalUserService implements UserService {
         }else {
             throw new EntityNotFoundException("User with id "+userId+" not found");
         }
+    }
+
+    @Override
+    @Transactional
+    public User findUserByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 }

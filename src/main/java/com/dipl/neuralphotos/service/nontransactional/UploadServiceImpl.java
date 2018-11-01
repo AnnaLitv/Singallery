@@ -7,10 +7,8 @@ import org.neuroph.core.NeuralNetwork;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Handler;
@@ -19,14 +17,13 @@ import java.util.logging.Handler;
 public class UploadServiceImpl implements UploadService {
 
     @Override
-    public String uploadFile(MultipartFile file){
+    public String uploadFile(MultipartFile file) throws IOException {
         String filename = file.getOriginalFilename();
         if (!file.isEmpty()) {
             File uploadedFile = new File("images/"+filename);
             if(uploadedFile.exists()){
                 uploadedFile = new File("images/"+"1-"+filename);
             }
-            try {
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
                         new BufferedOutputStream(new FileOutputStream(uploadedFile));
@@ -34,16 +31,13 @@ public class UploadServiceImpl implements UploadService {
                 stream.close();
                 if(checkToDouble(uploadedFile)){
                     trainSet();
-                    return "Вы удачно загрузили " + filename + " в " + uploadedFile.getAbsolutePath() + "!";
+                    return uploadedFile.getAbsolutePath() ;
                 }else {
                     uploadedFile.delete();
-                    throw new RuntimeException("Find duplicate!!!");
+                    throw new FileAlreadyExistsException("Find duplicate photo!");
                 }
-            } catch (Exception e) {
-                return "Вам не удалось загрузить " + filename + " => " + e.getMessage();
-            }
         } else {
-            return "Вам не удалось загрузить " + filename + " потому что файл пустой.";
+            throw new FileNotFoundException("File "+filename+" is empty.");
         }
     }
 
@@ -64,7 +58,7 @@ public class UploadServiceImpl implements UploadService {
                 maxEntry = entry;
             }
         }
-        return maxEntry == null || !(maxEntry.getValue() > 0.5);
+        return maxEntry == null || !(maxEntry.getValue() > 0.7);
     }
 
 }

@@ -9,4 +9,5 @@ import javax.persistence.PersistenceContext;
 @Repository
 @PersistenceContext
 public interface UserRepository extends JpaRepository<User,Long> {
+    User findByEmail(String email);
 }

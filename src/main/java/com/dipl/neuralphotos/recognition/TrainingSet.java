@@ -30,12 +30,13 @@ public class TrainingSet {
         // create neural network
         List<Integer> hiddenLayers = new ArrayList<Integer>();
         hiddenLayers.add(12);
+        hiddenLayers.add(8);
         nnet = ImageRecognitionHelper.createNewNeuralNetwork("singallery",
                 new Dimension(20, 20), ColorMode.COLOR_RGB, labels, hiddenLayers, TransferFunctionType.SIGMOID);
         // set learning rule parameters
         MomentumBackpropagation mb = (MomentumBackpropagation) nnet.getLearningRule();
-        mb.setLearningRate(0.3);
-        mb.setMaxError(0.2);
+        mb.setLearningRate(0.2);
+        mb.setMaxError(0.01);
         mb.setMomentum(0.7);
 
         // traiin network

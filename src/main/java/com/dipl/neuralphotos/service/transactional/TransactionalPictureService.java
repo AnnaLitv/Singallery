@@ -2,6 +2,7 @@ package com.dipl.neuralphotos.service.transactional;
 
 import com.dipl.neuralphotos.model.Picture;
 import com.dipl.neuralphotos.model.User;
+import com.dipl.neuralphotos.model.form.PictureForm;
 import com.dipl.neuralphotos.repository.PictureRepository;
 import com.dipl.neuralphotos.service.PictureService;
 import com.dipl.neuralphotos.service.UserService;
@@ -53,7 +54,14 @@ public class TransactionalPictureService implements PictureService {
     }
 
     @Override
-    public Picture savePicture(Picture picture){
-       return pictureRepository.save(picture);
+    public Picture savePicture(Picture picture) {
+        return pictureRepository.save(picture);
+    }
+
+    @Override
+    public Picture savePicture(PictureForm pictureForm, String filepath){
+        User user = userService.findUserById(1L);
+        Picture picture = new Picture(pictureForm.getName(),filepath,user);
+        return pictureRepository.save(picture);
     }
 }

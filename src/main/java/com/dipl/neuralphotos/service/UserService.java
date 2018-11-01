@@ -13,4 +13,7 @@ public interface UserService {
 
     @Transactional
     User findUserById(Long userId);
+
+    @Transactional
+    User findUserByEmail(String email);
 }

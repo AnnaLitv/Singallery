@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "iduser", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -159,4 +159,9 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+    public boolean isActive(){
+        return this.state == UserState.ACTIVE;
+    }
+
 }

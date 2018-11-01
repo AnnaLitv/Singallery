@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "api/upload")
@@ -31,7 +32,7 @@ public class UploadResource {
     }
 
     @RequestMapping(method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
         return uploadService.uploadFile(file);
     }
 
