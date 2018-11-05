@@ -17,4 +17,9 @@ public class MainResource {
     public String login(Model model){
         return "login";
     }
+
+//    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+//    public String logout(){
+//        return ""
+//    }
 }

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Controller
 @RequestMapping(value = "/api/picture")
@@ -67,7 +68,8 @@ public class PictureResource {
         if (url != null) {
             File file = new File(url);
             if (file.exists()) {
-                byte[] image = Files.readAllBytes(file.toPath());
+                Path path = file.toPath();
+                byte[] image = Files.readAllBytes(path);
                 response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
                 response.getOutputStream().write(image);
             }

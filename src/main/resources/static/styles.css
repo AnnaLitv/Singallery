@@ -23,8 +23,8 @@ body {
     text-align: left;
     border-bottom: 1px solid #ccc;
     position: relative;
-    background: #DBA6FE;
-    color: #A6D6FE;
+    background: #5f5f5f;
+    color: white;
 }
 .header-container .header-bar  {
     position: absolute;

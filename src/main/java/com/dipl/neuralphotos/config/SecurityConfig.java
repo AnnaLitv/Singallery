@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/admin/accountInfo")//
-                .access("hasAnyRole('USER', 'ADMIN')");
-       // http.authorizeRequests().antMatchers("/admin/product").access("hasRole('ROLE_MANAGER')");
+                .access("hasAnyAuthority('USER', 'ADMIN')");
+        http.authorizeRequests().antMatchers("/api/picture").access("hasAuthority('USER')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout().logoutUrl("/admin/logout").logoutSuccessUrl("/");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
 }
 

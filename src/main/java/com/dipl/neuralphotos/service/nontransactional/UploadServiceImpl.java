@@ -11,13 +11,13 @@ import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Handler;
 
 @Service
 public class UploadServiceImpl implements UploadService {
 
     @Override
     public String uploadFile(MultipartFile file) throws IOException {
+       // trainSet();
         String filename = file.getOriginalFilename();
         if (!file.isEmpty()) {
             File uploadedFile = new File("images/"+filename);
